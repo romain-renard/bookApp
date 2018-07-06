@@ -142,6 +142,46 @@ var students = [
     }
 ];
 
+
+var books = [ 
+    {
+      id: 1,
+      author: 'Paul Laurent', 
+      title: 'Paul au bord du lac', 
+      publicationDate: 1990, 
+      available: true,
+      nbPages: 200,
+      nbRent: 0
+    },
+    {
+      id: 2,
+      author: 'Paul Laurent', 
+      title: 'Paul au bord de la forêt', 
+      publicationDate: 1990, 
+      available: false,
+      nbPages: 200,
+      nbRent: 0
+    },
+    {
+      id: 3,
+      author: 'Paul Laurent', 
+      title: 'Paul au bord de la rivière', 
+      publicationDate: 1990, 
+      available: true,
+      nbPages: 200,
+      nbRent: 0
+    },
+    {
+      id: 4,
+      author: 'Paul Laurent', 
+      title: 'Paul au bord du gouffre', 
+      publicationDate: 1990, 
+      available: false,
+      nbPages: 200,
+      nbRent: 0
+    }
+];
+
 // Middlewares
 app.use(bodyParser.json()); // le body des requêtes sont parsées (json -> js)
 //app.use(express.static('public'));
@@ -159,12 +199,23 @@ app.use(function(req, res, next) {
 // GET
 app.get('/teams', (req, res) => res.json(teams));
 app.get('/students', (req, res) => res.json(students));
+app.get('/books', (req, res) => res.json(books));
 
 app.get('/students/:id', (req, res) => {
   let id = req.params.id;
   for (let i=0;i<students.length;i++) {
     if (students[i].id == id) {
       return res.json(students[i]);
+    }
+  }
+  res.status(404).send('Etudiant inconnu');
+});
+
+app.get('/books/:id', (req, res) => {
+  let id = req.params.id;
+  for (let i=0;i<books.length;i++) {
+    if (books[i].id == id) {
+      return res.json(books[i]);
     }
   }
   res.status(404).send('Etudiant inconnu');

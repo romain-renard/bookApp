@@ -12,7 +12,7 @@ export class BookComponent implements OnInit {
       title: '', 
       publicationDate: 0,
       available: false, 
-      nbPages: 0
+      nbPages: 0,
       nbRent: 0
   };
 
